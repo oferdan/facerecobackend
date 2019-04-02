@@ -54,7 +54,7 @@ app.use(cors());
 //nacti homepage
 app.get('/', (req, res) => {
     //res.send(working);
-    res.send(database.users); //vrat vsechny usery z db
+    res.send('it is working'); //vrat vsechny usery z db
 })
 
 //na request /signin, ktery posle JSON s userovym email and password, pokud je v DB, tak vrat success jinak error
