@@ -12,8 +12,8 @@ const image = require ('./controllers/image');
 const db = knex({
     client: 'pg',
     connection: {
-        connectionString: process.env.DATABASE_URL,
-        //connectionString: 'postgres://tzyynmpvfmdkaq:40e784e0bc8d0c700413f6c5d682ad6a58bd5583de0961528b72bae4ac6bc045@ec2-79-125-2-142.eu-west-1.compute.amazonaws.com:5432/d5tvq50obn959e',
+        //connectionString: process.env.DATABASE_URL,
+        connectionString: 'postgres://tzyynmpvfmdkaq:40e784e0bc8d0c700413f6c5d682ad6a58bd5583de0961528b72bae4ac6bc045@ec2-79-125-2-142.eu-west-1.compute.amazonaws.com:5432/d5tvq50obn959e',
         ssl: true
     }
 });
@@ -69,11 +69,11 @@ app.post('/register', (req, res) => {register.handleRegister(req, res, db, bcryp
 app.get('/profile/:id', (req, res) => {profile.handleProfile(req, res, db)});
 
 //update usera podle poctu image checku
-app.put('/image', (req, res) => {profile.handleImage(req, res)});
+app.put('/image', (req, res) => {image.handleImage(req, res, db)});
 
 //presunuti Clarifai na server
 //vycleneni imageurl
-app.post('/imageurl', (req, res) => {Image.handleApiCall(req, res)});
+app.post('/imageurl', (req, res) => {image.handleApiCall(req, res)});
 
 //server posloucha na portu
 app.listen(process.env.PORT || 3000, () => {

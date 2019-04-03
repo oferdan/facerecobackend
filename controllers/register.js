@@ -33,7 +33,7 @@ const handleRegister = (req, res, db, bcrypt) => {
             .into('login')
             .returning('email')
             .then(loginEmail => {
-                return db('users')
+                return trx('users')
                     .returning('*') //vrati vsechny radky z DB
                     .insert({
                         email: loginEmail[0],

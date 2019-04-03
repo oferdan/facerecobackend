@@ -8,13 +8,14 @@ const handleApiCall = (req, res) => {
     //presun z client side
     app.models.predict(Clarifai.FACE_DETECT_MODEL, req.body.input)
     .then(data => {
-        res.json(data);
+        //console.log(res.json(data)) //smazat
+        res.json(data)
     })
     .catch(err => res.status(400).json('unable to work with API'))
 }
  
 
-const handleImage = (req, res) => {
+const handleImage = (req, res, db) => {
     const { id } = req.body;
     // let found = false;
     // database.users.forEach(user => {
@@ -31,7 +32,8 @@ const handleImage = (req, res) => {
         .increment('entries', 1)
         .returning('entries')
         .then(entries => {
-            console.log(entries[0]);
+            //console.log(entries[0]);
+            res.json(entries[0]);
         })
         .catch(err => res.status(400).json('unable to get entries'))
 }
