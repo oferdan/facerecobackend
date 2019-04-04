@@ -41,7 +41,7 @@ const handleRegister = (req, res, db, bcrypt) => {
                     })
                     .then(user => {
                         //res.json(database.users[database.users.length - 1]); //vrati posledni zaznam z pole objektu pro objekt DB
-                        res.json(user[0]); //user=response
+                        res.json(user[0]); //user=response //fix smazat
                     })
             })
             .then(trx.commit)
